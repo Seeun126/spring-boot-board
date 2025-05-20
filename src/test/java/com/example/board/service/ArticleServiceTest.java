@@ -11,10 +11,11 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 @Disabled
 @SpringBootTest
-public class ArticleServiceTest {
+class ArticleServiceTest {
 
   @Autowired
   ArticleService articleService;
@@ -55,6 +56,7 @@ public class ArticleServiceTest {
     assertEquals(expected,article);
   }
 
+  @Transactional
   @Test
   void create_성공_title과_content만_있는_dto_입력() {
     //1. 예상 데이터
@@ -67,6 +69,8 @@ public class ArticleServiceTest {
     //3. 비교 및 검증
     assertEquals(expected.toString(), article.toString());
   }
+
+  @Transactional
   @Test
   void create_실패_id가_포함된_dto_입력() {
     //1. 예상 데이터
